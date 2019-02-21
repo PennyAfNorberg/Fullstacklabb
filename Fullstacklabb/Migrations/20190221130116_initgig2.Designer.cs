@@ -4,14 +4,16 @@ using Fullstacklabb.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fullstacklabb.Migrations
 {
     [DbContext(typeof(FullstacklabbContext))]
-    partial class FullstacklabbContextModelSnapshot : ModelSnapshot
+    [Migration("20190221130116_initgig2")]
+    partial class initgig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,7 @@ namespace Fullstacklabb.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
@@ -38,17 +38,13 @@ namespace Fullstacklabb.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ArtistId")
-                        .IsRequired();
+                    b.Property<string>("ArtistId");
 
                     b.Property<DateTime>("DateTime");
 
-                    b.Property<string>("GenreID")
-                        .IsRequired();
+                    b.Property<string>("GenreID");
 
-                    b.Property<string>("Venue")
-                        .IsRequired()
-                        .HasMaxLength(255);
+                    b.Property<string>("Venue");
 
                     b.HasKey("Id");
 
@@ -240,13 +236,11 @@ namespace Fullstacklabb.Migrations
                 {
                     b.HasOne("Fullstacklabb.Models.GigUser", "Artist")
                         .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArtistId");
 
                     b.HasOne("Fullstacklabb.Models.Genre", "Genre")
                         .WithMany()
-                        .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GenreID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
